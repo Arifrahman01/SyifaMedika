@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.rsusyifamedika.syifamedika">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <service android:name=".Notifikasi.MyFirebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Daftar.LoginActivity"
+            android:label="Masuk" />
+        <activity
+            android:name=".Daftar.MainActivity"
+            android:label="Daftar" />
+        <activity
+            android:name=".DrawerActivity"
+            android:label="Beranda"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".DokterActivity"
+            android:label="Dokter Praktek">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+        <activity
+            android:name=".PoliActivity"
+            android:label="Jadwal Poli">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="Edit Profile">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+        <activity
+            android:name=".KartuActivity"
+            android:label="KARTU PASIEN">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+        <activity
+            android:name=".EditProfileActivity"
+            android:label="Profile Pasien">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+        <activity
+            android:name=".LokasiActivity"
+            android:label="Lokasi">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+        <activity android:name=".Notifikasi.NotifikasiActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+
+        <service android:name=".Notifikasi.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".mEditActivity"
+            android:label="Edit Profile">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+        <activity android:name=".PemesananActivity" />
+        <activity android:name=".LengkapiDataActivity" />
+        <activity android:name=".LupaPasswordctivity" />
+        <activity android:name=".Daftar.VerifikasiActivity" />
+        <activity android:name=".Daftar.LoginNoPhoneActivity" />
+        <activity android:name=".Daftar.VerifNoHPActivity" />
+        <activity android:name=".VerifNoHandphoneActivity" />
+        <activity android:name=".Daftar.MenuLoginActivity" />
+        <activity android:name=".Daftar.MenuMasukActivity" />
+        <activity android:name=".Daftar.MenuDaftarActivity"></activity>
+    </application>
+
+</manifest>

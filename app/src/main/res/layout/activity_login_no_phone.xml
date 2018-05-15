@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/bg"
+    android:layout_height="match_parent"
+    tools:context=".Daftar.LoginNoPhoneActivity">
+
+    <TextView
+        android:id="@+id/tvTelepon"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/btMasukNoHP"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="+62"
+        android:textSize="18dp" />
+
+    <EditText
+        android:id="@+id/edNomorHP"
+        android:layout_width="310dp"
+        android:layout_height="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="140dp"
+        android:background="#e9ebfb"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Nomor Handphone"
+        android:inputType="phone"
+        android:selectAllOnFocus="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edKodeVerifikasi"
+        android:layout_width="311dp"
+        android:layout_height="36dp"
+        android:layout_alignBottom="@+id/imLock"
+        android:layout_centerHorizontal="true"
+        android:background="#e9ebfb"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Kode Verifikasi"
+        android:inputType="number"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edNomorHP" />
+
+
+    <Button
+        android:id="@+id/btMasukNoHP"
+        android:layout_width="149dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btKirimKode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:background="#e9ebfb"
+        android:enabled="false"
+        android:text="Masuk"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btKirimKode"
+        android:layout_width="147dp"
+        android:layout_height="43dp"
+        android:layout_centerInParent="true"
+        android:background="#e9ebfb"
+        android:text="Kirim Kode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edKodeVerifikasi" />
+
+
+    <ProgressBar
+        android:id="@+id/pbNomorHP"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="27dp"
+        android:layout_height="26dp"
+        android:layout_alignEnd="@+id/edNomorHP"
+        android:layout_alignTop="@+id/edNomorHP"
+        android:layout_marginEnd="0dp"
+        android:layout_marginTop="5dp"
+        android:visibility="invisible" />
+
+    <ProgressBar
+        android:id="@+id/pbKodeVerifikASI"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="29dp"
+        android:layout_height="34dp"
+        android:layout_alignBottom="@+id/edKodeVerifikasi"
+        android:layout_alignEnd="@+id/edKodeVerifikasi"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/imTelepon"
+        android:layout_width="27dp"
+        android:layout_height="26dp"
+        android:layout_alignStart="@+id/edNomorHP"
+        android:layout_alignTop="@+id/edNomorHP"
+        app:srcCompat="@drawable/phone" />
+
+    <ImageView
+        android:id="@+id/imLock"
+        android:layout_width="36dp"
+        android:layout_height="35dp"
+        android:layout_alignStart="@+id/edNomorHP"
+        android:layout_below="@+id/edNomorHP"
+        android:layout_marginTop="9dp"
+        android:visibility="invisible"
+        app:srcCompat="@drawable/lock" />
+
+    <ProgressBar
+        android:id="@+id/pbMasuk"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible" />
+
+</RelativeLayout>

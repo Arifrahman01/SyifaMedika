@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "354407940482",
+    "firebase_url": "https://rsu-syifa-medika.firebaseio.com",
+    "project_id": "rsu-syifa-medika",
+    "storage_bucket": "rsu-syifa-medika.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:354407940482:android:bc8fa9d04c20267d",
+        "android_client_info": {
+          "package_name": "com.rsusyifamedika.syifamedika"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "354407940482-is2m8uf8h3jkiii6b6ap0t3jiuus366v.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rsusyifamedika.syifamedika",
+            "certificate_hash": "9175266103abe721f02021215bcf2cbc55824e57"
+          }
+        },
+        {
+          "client_id": "354407940482-os9pl0csb67l3kfp20lndf564d00eb1k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF59IprLTU2U1x4CsVncKTuYI4JTNuFiw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "354407940482-os9pl0csb67l3kfp20lndf564d00eb1k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
