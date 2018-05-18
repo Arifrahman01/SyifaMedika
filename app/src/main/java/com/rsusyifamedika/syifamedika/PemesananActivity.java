@@ -41,9 +41,7 @@ public class PemesananActivity extends AppCompatActivity {
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        myRef = mFirebaseDatabase.getReference("DokterSpesialis");
-        FirebaseUser user = mAuth.getCurrentUser();
-        userID = user.getUid();
+        myRef = mFirebaseDatabase.getReferenceFromUrl("https://rsu-syifa-medika.firebaseio.com/DokterSpesialis");
 
 
         List<String> item = new ArrayList<>();
@@ -56,18 +54,17 @@ public class PemesananActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpiner.setAdapter(adapter);
 
-        myRef.child("DokterSpesialis").child("1").addValueEventListener(new ValueEventListener() {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-//                List<String> Polispesial = new ArrayList<String>();
-//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    String Poli = ds.getValue(String.class);
-//                    Polispesial.add(Poli);
-//                }
-//                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(PemesananActivity.this, android.R.layout.simple_spinner_dropdown_item, Polispesial);
-//                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//                mSpinerDokter.setAdapter(arrayAdapter);
+                List<String> Polispesial = new ArrayList<String>();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String Poli = ds.getValue(String.class);
+                    Polispesial.add(Poli);
+                }
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(PemesananActivity.this, android.R.layout.simple_spinner_dropdown_item, Polispesial);
+                arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                mSpinerDokter.setAdapter(arrayAdapter);
             }
 
 
