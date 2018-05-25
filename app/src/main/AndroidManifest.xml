@@ -102,7 +102,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DrawerActivity" />
         </activity>
-        <activity android:name=".PemesananActivity" />
+        <activity android:name=".Poliklinik.PemesananActivity" />
         <activity android:name=".LengkapiDataActivity" />
         <activity android:name=".LupaPasswordctivity" />
         <activity android:name=".Daftar.VerifikasiActivity" />
@@ -111,7 +111,10 @@
         <activity android:name=".VerifNoHandphoneActivity" />
         <activity android:name=".Daftar.MenuLoginActivity" />
         <activity android:name=".Daftar.MenuMasukActivity" />
-        <activity android:name=".Daftar.MenuDaftarActivity"></activity>
+        <activity android:name=".Daftar.MenuDaftarActivity" />
+        <activity android:name=".Poliklinik.Pemesanan2Activity" />
+        <activity android:name=".Poliklinik.PenyakitDalamActivity" />
+        <activity android:name=".Poliklinik.KlinikBedahActivity"></activity>
     </application>
 
 </manifest>

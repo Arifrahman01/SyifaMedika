@@ -10,11 +10,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.rsusyifamedika.syifamedika.Daftar.LoginActivity;
-import com.rsusyifamedika.syifamedika.Daftar.MenuLoginActivity;
+import com.rsusyifamedika.syifamedika.Poliklinik.PemesananActivity;
 
 public class PoliActivity extends AppCompatActivity {
     private WebView webPoli;

@@ -2,10 +2,9 @@ package com.rsusyifamedika.syifamedika;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.rsusyifamedika.syifamedika.Daftar.MenuLoginActivity;
+import com.rsusyifamedika.syifamedika.Poliklinik.PemesananActivity;
 
 public class SplashActivity extends Activity {
 
