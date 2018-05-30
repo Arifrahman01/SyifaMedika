@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -60,6 +61,39 @@ public class PenyakitDalamActivity extends AppCompatActivity {
         findViewById(R.id.btDaftarPenyakitDalam).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String nama = medNama1.getText().toString().trim();
+                String ID = medNoIdenditas1.getText().toString().trim();
+                String Waktu = medPemesanan1.getText().toString().trim();
+                String Keluhan = medKeluhan1.getText().toString().trim();
+
+                if (TextUtils.isEmpty(nama)){
+                    medNama1.setError("Nama Tidak Boleh Kosong");
+                    medNama1.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(ID)){
+                    medNoIdenditas1.setError("Identitas Tidak Boleh Kosong");
+                    medNoIdenditas1.requestFocus();
+                    return;
+                }
+                if (ID.length() <10 ){
+                    medNoIdenditas1.setError("Nomor Tidak Valid");
+                    medNoIdenditas1.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(Waktu)){
+                    medPemesanan1.setError("Waktu Pemesanan Tidak Boleh Kosong");
+                    medPemesanan1.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(Keluhan)){
+                    medKeluhan1.setError("SIlahkan Isi Keluhan Anda");
+                    medKeluhan1.requestFocus();
+                    return;
+                }
+
+
+
                 AlertDaftarPenyalkitDalam();
 
                 }

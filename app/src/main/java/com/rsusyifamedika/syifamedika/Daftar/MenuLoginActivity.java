@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.rsusyifamedika.syifamedika.DrawerActivity;
 import com.rsusyifamedika.syifamedika.LengkapiDataActivity;
 import com.rsusyifamedika.syifamedika.R;
 
@@ -24,7 +25,7 @@ public class MenuLoginActivity extends Activity {
         FirebaseUser user = mAuth.getCurrentUser();
 
         if (mAuth.getCurrentUser() != null){
-            Intent i = new Intent(MenuLoginActivity.this, LengkapiDataActivity.class);
+            Intent i = new Intent(MenuLoginActivity.this, DrawerActivity.class);
             startActivity(i);
         }
 

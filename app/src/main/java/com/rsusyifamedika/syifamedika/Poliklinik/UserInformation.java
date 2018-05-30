@@ -1,6 +1,6 @@
 package com.rsusyifamedika.syifamedika.Poliklinik;
 
-class UserInfo {
+class UserInformation {
     private String nama;
     private String alamat;
     private String norm;
@@ -8,7 +8,7 @@ class UserInfo {
     private String tgl_lahir;
     private String poliklinik;
 
-    public UserInfo(){
+    public UserInformation(){
 
     }
 

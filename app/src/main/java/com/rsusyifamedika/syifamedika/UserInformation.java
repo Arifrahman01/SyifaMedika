@@ -1,6 +1,6 @@
 package com.rsusyifamedika.syifamedika;
 
-class UserInformation {
+public class UserInformation {
     private String nama;
     private String alamat;
     private String norm;

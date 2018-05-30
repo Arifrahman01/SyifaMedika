@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.rsusyifamedika.syifamedika.DrawerActivity;
 import com.rsusyifamedika.syifamedika.LupaPasswordctivity;
 import com.rsusyifamedika.syifamedika.R;
 
@@ -35,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() != null) {
             finish();
-            startActivity(new Intent(getApplicationContext(), VerifikasiActivity.class));
+            startActivity(new Intent(getApplicationContext(), DrawerActivity.class));
         }
 
         etEmail = (EditText) findViewById(R.id.etEmail);

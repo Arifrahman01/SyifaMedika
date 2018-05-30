@@ -3,20 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@drawable/bg"
     android:orientation="vertical"
+    android:background="@drawable/bg"
     android:layout_height="match_parent"
-    tools:context=".Poliklinik.KlinikBedahActivity">
+    tools:context=".Poliklinik.KlinikAnakActivity">
 
     <TextView
         android:id="@+id/textView15"
         android:layout_width="283dp"
-        android:layout_height="27dp"
+        android:layout_height="28dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="84dp"
-        android:gravity="center"
-        android:text="Pendaftaran Klinik Bedah"
+        android:layout_marginTop="102dp"
+        android:text="Pendaftaran Klinik Anak"
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
@@ -30,10 +29,11 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"
         app:layout_constraintVertical_bias="0.0">
@@ -45,13 +45,13 @@
             android:text="  Nama" />
 
         <EditText
-            android:id="@+id/edNamabedah"
+            android:id="@+id/edNamaAnak"
             android:layout_width="match_parent"
             android:layout_height="34dp"
             android:ems="10"
             android:hint="Nama Lengkap"
             android:inputType="textPersonName"
-            android:textSize="12sp" />
+            android:textSize="12dp" />
 
         <TextView
             android:id="@+id/textView20"
@@ -60,7 +60,7 @@
             android:text="  No Identitas" />
 
         <EditText
-            android:id="@+id/edNoIdenditasbedah"
+            android:id="@+id/edNoIdenditasAnak"
             android:layout_width="match_parent"
             android:layout_height="34dp"
             android:ems="10"
@@ -75,7 +75,7 @@
             android:text="  Dokter Spesialis" />
 
         <Spinner
-            android:id="@+id/spinnerDokterBedah"
+            android:id="@+id/spinnerDokterAnak"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -86,7 +86,7 @@
             android:text="  Waktu Pemesanan" />
 
         <EditText
-            android:id="@+id/edWaktuPemesananBedah"
+            android:id="@+id/edWaktuPemesananAnak"
             android:layout_width="match_parent"
             android:layout_height="34dp"
             android:ems="10"
@@ -101,7 +101,7 @@
             android:text="  Keluhan" />
 
         <EditText
-            android:id="@+id/edKeluhanBedah"
+            android:id="@+id/edKeluhanAnak"
             android:layout_width="match_parent"
             android:layout_height="69dp"
             android:ems="10"
@@ -111,7 +111,7 @@
             android:textSize="12dp" />
 
         <Button
-            android:id="@+id/btDaftarKlinikBedah"
+            android:id="@+id/btDaftarPenyakitDalam"
             android:layout_width="match_parent"
             android:layout_height="36dp"
             android:text="Daftar" />
@@ -119,7 +119,7 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/imgBedah"
+        android:id="@+id/imgJadwal"
         android:layout_width="17dp"
         android:layout_height="15dp"
         android:layout_marginBottom="184dp"
@@ -135,14 +135,13 @@
         android:layout_width="33dp"
         android:layout_height="11dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginTop="8dp"
         android:text="Jadwal"
         android:textSize="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="@+id/imgBedah"
+        app:layout_constraintEnd_toStartOf="@+id/imgJadwal"
         app:layout_constraintTop_toTopOf="@+id/linearLayout2"
-        app:layout_constraintVertical_bias="0.476" />
+        app:layout_constraintVertical_bias="0.48" />
 
 
 </android.support.constraint.ConstraintLayout>

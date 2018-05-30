@@ -114,7 +114,8 @@
         <activity android:name=".Daftar.MenuDaftarActivity" />
         <activity android:name=".Poliklinik.Pemesanan2Activity" />
         <activity android:name=".Poliklinik.PenyakitDalamActivity" />
-        <activity android:name=".Poliklinik.KlinikBedahActivity"></activity>
+        <activity android:name=".Poliklinik.KlinikBedahActivity" />
+        <activity android:name=".Poliklinik.KlinikAnakActivity"></activity>
     </application>
 
 </manifest>

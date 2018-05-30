@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.rsusyifamedika.syifamedika.Daftar.MenuDaftarActivity;
+import com.rsusyifamedika.syifamedika.Daftar.MenuLoginActivity;
 import com.rsusyifamedika.syifamedika.Poliklinik.PemesananActivity;
 
 public class SplashActivity extends Activity {
@@ -19,7 +21,7 @@ public class SplashActivity extends Activity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    startActivity(new Intent(SplashActivity.this, PemesananActivity.class));
+                    startActivity(new Intent(SplashActivity.this, MenuLoginActivity.class));
 //                            MenuLoginActivity.class));
                     finish();
                 }

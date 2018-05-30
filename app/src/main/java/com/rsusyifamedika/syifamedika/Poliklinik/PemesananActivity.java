@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rsusyifamedika.syifamedika.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,20 +39,22 @@ public class PemesananActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
     private String userID;
+    private ProgressBar mpbPemesanan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pemesanan);
 
-
         mSpiner = (Spinner) findViewById(R.id.SpinerPoli);
 
-        mbtnPemesanan = (Button) findViewById(R.id.btnPemesanan);
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
         myRef = mFirebaseDatabase.getReference();
+//        if (mSpiner.getSelectedItem().toString().length() > 1 ){
+//            mpbPemesanan.setVisibility(View.GONE);
+//        }
 
 
         myRef.child("Poliklinik").addValueEventListener(new ValueEventListener() {
@@ -86,6 +91,9 @@ public class PemesananActivity extends AppCompatActivity {
                     case 2:
                         AlertBedah();
                         break;
+                    case 3:
+                        AlertKlinikAnak();
+                        break;
 
                 }
             }
@@ -95,6 +103,31 @@ public class PemesananActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void AlertKlinikAnak() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Pilih Poli");
+        alertDialogBuilder
+                .setMessage("Anda Memilih Poli" + mSpiner.getSelectedItem().toString() + " ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//
+                        Intent i = new Intent(PemesananActivity.this, KlinikAnakActivity.class);
+                        startActivity(i);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     private void AlertBedah() {

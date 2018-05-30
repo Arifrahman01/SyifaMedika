@@ -14,34 +14,23 @@
         android:layout_height="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14"></Spinner>
 
     <TextView
         android:id="@+id/textView14"
-        android:layout_width="320dp"
-        android:layout_height="24dp"
+        android:layout_width="323dp"
+        android:layout_height="34dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="164dp"
+        android:gravity="center"
         android:text="Pilih Poliklinik Tujuan"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnPemesanan"
-        android:layout_width="80dp"
-        android:layout_height="36dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
-        android:text="Lanjut"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SpinerPoli" />
 
 </android.support.constraint.ConstraintLayout>

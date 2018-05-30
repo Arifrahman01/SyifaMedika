@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import com.rsusyifamedika.syifamedika.DrawerActivity;
 import com.rsusyifamedika.syifamedika.LengkapiDataActivity;
 import com.rsusyifamedika.syifamedika.R;
 
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 
@@ -36,7 +38,7 @@ public class LoginNoPhoneActivity extends AppCompatActivity {
     private EditText medNoHandphone, medKodeVerifikasi;
     private Button mbtKirimKode, mbtMasukNohp;
     private ProgressBar mpbNoHP, mpbKodeVerifikasi, mpbMasuk;
-    private TextView mtvTelepon;
+    private TextView mtvKirimUlang;
 
     private ImageView mLock, mTelepon;
 
@@ -53,11 +55,9 @@ public class LoginNoPhoneActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_no_phone);
 
-        mtvTelepon = findViewById(R.id.tvTelepon);
-
         medNoHandphone = findViewById(R.id.edNomorHP);
         medKodeVerifikasi = findViewById(R.id.edKodeVerifikasi);
-
+        mtvKirimUlang = findViewById(R.id.tvKirimUlang);
         mpbNoHP = findViewById(R.id.pbNomorHP);
         mpbKodeVerifikasi = findViewById(R.id.pbKodeVerifikASI);
         mpbMasuk = findViewById(R.id.pbMasuk);
@@ -69,6 +69,11 @@ public class LoginNoPhoneActivity extends AppCompatActivity {
         mbtKirimKode = findViewById(R.id.btKirimKode);
 
         mAuth = FirebaseAuth.getInstance();
+
+        if (mAuth.getCurrentUser() != null) {
+            finish();
+            startActivity(new Intent(getApplicationContext(), DrawerActivity.class));
+        }
 
         findViewById(R.id.btKirimKode).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,19 +90,39 @@ public class LoginNoPhoneActivity extends AppCompatActivity {
                     return;
                 }
                 if (nomor.length() < 11) {
-                    medNoHandphone.setError("Nomor Handpone Tidak Valid, Kurang");
+                    medNoHandphone.setError("Nomor Handpone Tidak Valid");
                     medNoHandphone.requestFocus();
                     return;
 
                 }
                 if (nomor.length() > 13) {
-                    medNoHandphone.setError("Nomor Handpone Tidak Valid, Lebihan");
+                    medNoHandphone.setError("Nomor Handpone Tidak Valid");
                     medNoHandphone.requestFocus();
                     return;
 
                 }
+                String text = "120";
+                int detik = Integer.valueOf(text);
+                CountDownTimer countDownTimer = new CountDownTimer(detik * 1000, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        mtvKirimUlang.setText("Kirim Ulang Kode Dalam : "+ (int)(millisUntilFinished / 1000));
+
+
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mtvKirimUlang.setText("");
+                        mbtKirimKode.setVisibility(View.VISIBLE);
+                        medNoHandphone.setEnabled(true);
+
+                    }
+                }.start();
+
 
                 AlertKirimKode();
+
 
             }
         });
@@ -174,6 +199,7 @@ public class LoginNoPhoneActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         String phoneNumber = medNoHandphone.getText().toString();
                         mpbNoHP.setVisibility(View.VISIBLE);
+                        mtvKirimUlang.setVisibility(View.VISIBLE);
 
                         if (!phoneNumber.substring(0, 2).equals("+62")) {
                             phoneNumber = "+62" + phoneNumber.substring(1);
