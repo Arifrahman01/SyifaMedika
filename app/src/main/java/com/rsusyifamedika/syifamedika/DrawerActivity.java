@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.rsusyifamedika.syifamedika.Ambulan.PemesananAmbulanActivity;
 import com.rsusyifamedika.syifamedika.Daftar.LoginActivity;
 import com.rsusyifamedika.syifamedika.Daftar.MenuLoginActivity;
 import com.rsusyifamedika.syifamedika.Poliklinik.PemesananActivity;
@@ -150,6 +151,11 @@ public class DrawerActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_ambulan) {
+            Intent i = new Intent(DrawerActivity.this, PemesananAmbulanActivity.class);
+            startActivity(i);
+
+
+        } else if (id == R.id.nav_pemesanan) {
             Intent i = new Intent(DrawerActivity.this, PemesananActivity.class);
             startActivity(i);
 

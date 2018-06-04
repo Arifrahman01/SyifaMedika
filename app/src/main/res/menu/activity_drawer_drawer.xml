@@ -2,20 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
-    <group>
-        <item
-            android:id="@+id/nav_poli"
-            android:icon="@drawable/kalender"
-            android:title="Jadwal Poli" />
-        <item
-            android:id="@+id/nav_dokter"
-            android:icon="@drawable/dokter"
-            android:title="Dokter Praktek" />
-        <item
-            android:id="@+id/nav_ambulan"
-            android:icon="@drawable/ambulance"
-            android:title="Pemesanan"/>
-    </group>
+    <item android:title="Syifa Medika">
+        <menu>
+            <item
+                android:id="@+id/nav_poli"
+                android:icon="@drawable/kalender"
+                android:title="Jadwal Poli" />
+            <item
+                android:id="@+id/nav_dokter"
+                android:icon="@drawable/dokter"
+                android:title="Dokter Praktek" />
+            <item
+                android:id="@+id/nav_pemesanan"
+                android:icon="@drawable/jadwal2"
+                android:title="Pemesanan" />
+            <item
+                android:id="@+id/nav_ambulan"
+                android:icon="@drawable/ambulance"
+                android:title="Ambulan" />
+        </menu>
+    </item>
 
     <item android:title="Profil">
         <menu>
@@ -30,7 +36,7 @@
             <item
                 android:id="@+id/Profile"
                 android:icon="@drawable/dokter"
-                android:title="Profile"/>
+                android:title="Profile" />
         </menu>
     </item>
     <item android:title="Akun">
@@ -38,7 +44,7 @@
             <item
                 android:id="@+id/nav_keluar"
                 android:icon="@drawable/dokter"
-                android:title="Keluar"/>
+                android:title="Keluar" />
         </menu>
     </item>
 </menu>
