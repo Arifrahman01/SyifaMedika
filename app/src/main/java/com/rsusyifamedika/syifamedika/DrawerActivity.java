@@ -175,7 +175,7 @@ public class DrawerActivity extends AppCompatActivity
             startActivity(i);
 
         } else if (id == R.id.Profile) {
-            Intent i = new Intent(DrawerActivity.this, ProfileActivity.class);
+            Intent i = new Intent(DrawerActivity.this, StatusActivity.class);
             startActivity(i);
         }
 

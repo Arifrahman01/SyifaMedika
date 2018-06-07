@@ -7,6 +7,9 @@ public class UserInformation {
     private String tempat;
     private String tgl_lahir;
     private String poliklinik;
+    private String DokterSpesialis;
+    private String status;
+    private String waktu;
 
     public UserInformation(){
 
@@ -51,7 +54,38 @@ public class UserInformation {
     public void setTgl_lahir(String tgl_lahir) {
         this.tgl_lahir = tgl_lahir;
     }
-    public void getPoliklinik(String poliklinik){
+
+
+    public void setPoliklinik(String poliklinik){
         this.poliklinik = poliklinik;
     }
+    public String getPoliklinik() {
+        return waktu;
+    }
+
+
+
+    public void setDokterSpesialis(String dokter_spesialis) {
+        this.DokterSpesialis = dokter_spesialis;
+    }
+    public String getDokterSpesialis() {
+        return DokterSpesialis;
+    }
+
+
+    public void setStatus(String dokter_spesialis) {
+        this.status = status;
+    }
+
+    public String getSatus() {
+            return status;
+    }
+
+    public void setWaktu(String waktu) {
+        this.waktu = waktu;
+    }
+    public String getwaktu() {
+        return waktu;
+    }
+
 }

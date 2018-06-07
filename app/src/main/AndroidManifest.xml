@@ -116,7 +116,8 @@
         <activity android:name=".Poliklinik.PenyakitDalamActivity" />
         <activity android:name=".Poliklinik.KlinikBedahActivity" />
         <activity android:name=".Poliklinik.KlinikAnakActivity" />
-        <activity android:name=".Ambulan.PemesananAmbulanActivity"></activity>
+        <activity android:name=".Ambulan.PemesananAmbulanActivity" />
+        <activity android:name=".StatusActivity"></activity>
     </application>
 
 </manifest>
