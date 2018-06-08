@@ -131,7 +131,7 @@ public class DrawerActivity extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item){
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -171,7 +171,7 @@ public class DrawerActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_propil) {
-            Intent i = new Intent(DrawerActivity.this, mEditActivity.class);
+            Intent i = new Intent(DrawerActivity.this, KartuActivity.class);
             startActivity(i);
 
         } else if (id == R.id.Profile) {

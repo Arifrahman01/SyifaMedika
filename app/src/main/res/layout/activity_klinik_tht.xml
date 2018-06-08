@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+    tools:context=".Poliklinik.KlinikTHTActivity">
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="283dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="96dp"
+        android:text="Pendaftaran Klinik Penyakit Dalam"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="283dp"
+        android:layout_height="371dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  Nama" />
+
+        <EditText
+            android:id="@+id/edNamaTHT"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:ems="10"
+            android:hint="Nama Lengkap"
+            android:inputType="textPersonName"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  No Identitas" />
+
+        <EditText
+            android:id="@+id/edNoIdenditasTHT"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:ems="10"
+            android:hint="KTP/ SIM/ PASSPORT"
+            android:inputType="number"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  Dokter Spesialis" />
+
+        <Spinner
+            android:id="@+id/spinnerDokterTHT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="331dp"
+            android:layout_height="wrap_content"
+            android:text="  Waktu Pemesanan" />
+
+        <EditText
+            android:id="@+id/edWaktuTHT"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:ems="10"
+            android:hint="Waktu Pemesanan"
+            android:inputType="textPersonName"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="  Keluhan" />
+
+        <EditText
+            android:id="@+id/edKeluhanTHT"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:ems="10"
+            android:gravity="left|top"
+            android:hint="Keluhan Anda"
+            android:inputType="textMultiLine"
+            android:textSize="12dp" />
+
+        <Button
+            android:id="@+id/btDaftarTHT"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:text="Daftar" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imgJadwal"
+        android:layout_width="17dp"
+        android:layout_height="15dp"
+        android:layout_marginBottom="184dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/textView15"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/seru" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="33dp"
+        android:layout_height="11dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Jadwal"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toStartOf="@+id/imgJadwal"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.48" />
+
+
+</android.support.constraint.ConstraintLayout>

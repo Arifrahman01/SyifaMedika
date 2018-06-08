@@ -20,6 +20,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rsusyifamedika.syifamedika.DrawerActivity;
 import com.rsusyifamedika.syifamedika.R;
 
 import org.w3c.dom.Text;
@@ -94,6 +95,31 @@ public class PemesananActivity extends AppCompatActivity {
                     case 3:
                         AlertKlinikAnak();
                         break;
+                    case 4:
+                        AlertSyaraf();
+                        break;
+                    case 5:
+                        AlertMata();
+                        break;
+                    case 6:
+                        AlertParu();
+                        break;
+                    case 7:
+                        AlertTHT();
+                        break;
+                    case 8:
+                        AlertRM();
+                        break;
+                    case 9:
+                        AlertBedahMulut();
+                        break;
+                    case 10:
+                        AlertGigi();
+                        break;
+                    case 11:
+                        AlertTambah1();
+                        break;
+
 
                 }
             }
@@ -103,6 +129,208 @@ public class PemesananActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void AlertTambah1() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Update Aplikasi");
+        alertDialogBuilder
+                .setMessage("Aplikasi Perlu Pembaruan ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Perbarui", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//
+                        Intent i = new Intent(PemesananActivity.this, DrawerActivity.class);
+                        startActivity(i);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void AlertGigi() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Pilih Poli");
+        alertDialogBuilder
+                .setMessage("Anda Memilih Poli" + mSpiner.getSelectedItem().toString() + " ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//
+                        Intent i = new Intent(PemesananActivity.this, KlinikGigiActivity.class);
+                        startActivity(i);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void AlertBedahMulut() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Pilih Poli");
+        alertDialogBuilder
+                .setMessage("Anda Memilih Poli" + mSpiner.getSelectedItem().toString() + " ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//
+                        Intent i = new Intent(PemesananActivity.this, KlinikGigiBedahActivity.class);
+                        startActivity(i);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void AlertRM() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Pilih Poli");
+        alertDialogBuilder
+                .setMessage("Anda Memilih Poli" + mSpiner.getSelectedItem().toString() + " ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//
+                        Intent i = new Intent(PemesananActivity.this, RehabMedikActivity.class);
+                        startActivity(i);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void AlertTHT() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Pilih Poli");
+        alertDialogBuilder
+                .setMessage("Anda Memilih Poli" + mSpiner.getSelectedItem().toString() + " ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//
+                        Intent i = new Intent(PemesananActivity.this, KlinikTHTActivity.class);
+                        startActivity(i);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+    }
+
+    private void AlertParu() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Pilih Poli");
+        alertDialogBuilder
+                .setMessage("Anda Memilih Poli" + mSpiner.getSelectedItem().toString() + " ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//
+                        Intent i = new Intent(PemesananActivity.this, KlinikParuActivity.class);
+                        startActivity(i);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void AlertMata() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Pilih Poli");
+        alertDialogBuilder
+                .setMessage("Anda Memilih Poli" + mSpiner.getSelectedItem().toString() + " ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//
+                        Intent i = new Intent(PemesananActivity.this, KlinikMataActivity.class);
+                        startActivity(i);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void AlertSyaraf() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Pilih Poli");
+        alertDialogBuilder
+                .setMessage("Anda Memilih Poli" + mSpiner.getSelectedItem().toString() + " ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+//
+                        Intent i = new Intent(PemesananActivity.this, KlinikSyarafActivity.class);
+                        startActivity(i);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
     }
 
     private void AlertKlinikAnak() {

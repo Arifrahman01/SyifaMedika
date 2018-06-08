@@ -117,7 +117,15 @@
         <activity android:name=".Poliklinik.KlinikBedahActivity" />
         <activity android:name=".Poliklinik.KlinikAnakActivity" />
         <activity android:name=".Ambulan.PemesananAmbulanActivity" />
-        <activity android:name=".StatusActivity"></activity>
+        <activity android:name=".StatusActivity" />
+        <activity android:name=".Poliklinik.KlinikSyarafActivity" />
+        <activity android:name=".Poliklinik.KlinikMataActivity" />
+        <activity android:name=".Poliklinik.KlinikParuActivity" />
+        <activity android:name=".Poliklinik.KlinikTHTActivity" />
+        <activity android:name=".Poliklinik.RehabMedikActivity" />
+        <activity android:name=".Poliklinik.KlinikGigiBedahActivity" />
+        <activity android:name=".Poliklinik.KlinikGigiActivity" />
+        <activity android:name=".Poliklinik.GigiAnakActivity"></activity>
     </application>
 
 </manifest>
