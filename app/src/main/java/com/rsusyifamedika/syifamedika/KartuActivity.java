@@ -35,7 +35,8 @@ public class KartuActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
 
-        myRef.addValueEventListener(new ValueEventListener() {
+
+        myRef.child("PemesananPoli").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 showData(dataSnapshot);
@@ -51,14 +52,15 @@ public class KartuActivity extends AppCompatActivity {
 
     private void showData(DataSnapshot dataSnapshot) {
         for (DataSnapshot ds : dataSnapshot.getChildren()) {
+            String user_id = mAuth.getCurrentUser().getUid();
             UserInformation uInfo = new UserInformation();
-            uInfo.setNama(ds.child(userID).getValue(UserInformation.class).getNama());
-            uInfo.setNorm(ds.child(userID).getValue(UserInformation.class).getNorm());
-            uInfo.setAlamat(ds.child(userID).getValue(UserInformation.class).getAlamat());
+            uInfo.setNama(ds.child(user_id).getValue(UserInformation.class).getNama());
+            uInfo.setNorm(ds.child(user_id).getValue(UserInformation.class).getNorm());
+            uInfo.setAlamat(ds.child(user_id).getValue(UserInformation.class).getAlamat());
 
-            mtvNomorRM.setText(uInfo.getNorm());
-            mtvNamaLengkap.setText(uInfo.getNama());
-            mtvAlamat.setText(uInfo.getAlamat());
+            mtvNomorRM.setText(uInfo.getNorm().toString());
+            mtvNamaLengkap.setText(uInfo.getNama().toString());
+            mtvAlamat.setText(uInfo.getAlamat().toString());
         }
     }
 }

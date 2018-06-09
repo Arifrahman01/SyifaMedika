@@ -107,7 +107,7 @@ public class KlinikTHTActivity extends AppCompatActivity {
             }
         });
 
-        myRef.child("DokterPenyakitDalam").addValueEventListener(new ValueEventListener() {
+        myRef.child("DokterTHT").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<String> DokterPenyakitDalam = new ArrayList<String>();
@@ -205,7 +205,7 @@ public class KlinikTHTActivity extends AppCompatActivity {
         alertDialogBuilder.setTitle("Jadwal Praktek");
         alertDialogBuilder
                 .setMessage("Senin – Jum’at\n" +
-                        "14.30 – 16.00 : dr. Nur Janah,Sp.P, FISR")
+                        "16.00 – 18.00 : dr. Shofiah Sari, Sp.THT-KL")
                 .setIcon(R.mipmap.ic_launcher)
                 .setCancelable(false)
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {

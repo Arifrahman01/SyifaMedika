@@ -104,7 +104,7 @@ public class KlinikSyarafActivity extends AppCompatActivity {
             }
         });
 
-        myRef.child("DokterPenyakitDalam").addValueEventListener(new ValueEventListener() {
+        myRef.child("DokterSyaraf").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<String> DokterPenyakitDalam = new ArrayList<String>();

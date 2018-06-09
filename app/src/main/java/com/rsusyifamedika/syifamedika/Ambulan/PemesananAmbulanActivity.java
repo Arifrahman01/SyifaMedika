@@ -80,7 +80,7 @@ public class PemesananAmbulanActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String user_id = mAuth.getCurrentUser().getUid();
-                        DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("PemesananPoli").child(user_id);
+                        DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Ambulan").child(user_id);
                         String nama = mNamaAmbulan.getText().toString();
                         String alamat = mAlamatAmbulan.getText().toString();
                         String keluhan = mKeluhanAmbulan.getText().toString();

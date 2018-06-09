@@ -105,7 +105,7 @@ public class GigiAnakActivity extends AppCompatActivity {
             }
         });
 
-        myRef.child("DokterPenyakitDalam").addValueEventListener(new ValueEventListener() {
+        myRef.child("DokterGigiAnak").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<String> DokterPenyakitDalam = new ArrayList<String>();

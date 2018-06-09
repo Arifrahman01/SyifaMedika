@@ -117,6 +117,8 @@ public class PemesananActivity extends AppCompatActivity {
                         AlertGigi();
                         break;
                     case 11:
+                        AlertGigiAnak();
+                    case 12:
                         AlertTambah1();
                         break;
 
@@ -129,6 +131,32 @@ public class PemesananActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void AlertGigiAnak() {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Pilih Poli");
+            alertDialogBuilder
+                    .setMessage("Anda Memilih Poli" + mSpiner.getSelectedItem().toString() + " ?")
+                    .setIcon(R.mipmap.ic_launcher)
+                    .setCancelable(false)
+                    .setPositiveButton("Perbarui", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+//
+                            Intent i = new Intent(PemesananActivity.this, GigiAnakActivity.class);
+                            startActivity(i);
+                        }
+                    })
+                    .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
     }
 
     private void AlertTambah1() {
