@@ -31,7 +31,7 @@ public class NotifikasiActivity extends AppCompatActivity {
         mbar = (ProgressBar) findViewById(R.id.barNotif);
         mwebNotif.setWebViewClient(new myWebViewClient());
 //        webPoli.getSettings().setJavaScriptEnabled(true); //untuk mengaktifkan javascrip
-        mwebNotif.loadUrl("http://rsusyifamedika.com/notifikasi/");
+        mwebNotif.loadUrl("http://rsusyifamedika.com/kumpulan-info-sehat/");
 
         if (mAuth.getCurrentUser() == null) {
             AllertKeluarPoli();

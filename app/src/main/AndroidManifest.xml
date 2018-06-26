@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -108,7 +109,6 @@
         <activity android:name=".Daftar.VerifikasiActivity" />
         <activity android:name=".Daftar.LoginNoPhoneActivity" />
         <activity android:name=".Daftar.VerifNoHPActivity" />
-        <activity android:name=".VerifNoHandphoneActivity" />
         <activity android:name=".Daftar.MenuLoginActivity" />
         <activity android:name=".Daftar.MenuMasukActivity" />
         <activity android:name=".Daftar.MenuDaftarActivity" />
@@ -125,7 +125,10 @@
         <activity android:name=".Poliklinik.RehabMedikActivity" />
         <activity android:name=".Poliklinik.KlinikGigiBedahActivity" />
         <activity android:name=".Poliklinik.KlinikGigiActivity" />
-        <activity android:name=".Poliklinik.GigiAnakActivity"></activity>
+        <activity android:name=".Poliklinik.GigiAnakActivity" />
+        <activity android:name=".FeedbackActivity" />
+        <activity android:name=".Poliklinik.DaftarDsActivity" />
+        <activity android:name=".Daftar.DaftarRMActivity"></activity>
     </application>
 
 </manifest>

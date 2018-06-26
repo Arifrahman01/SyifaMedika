@@ -14,6 +14,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,27 +46,19 @@ public class LengkapiDataActivity extends AppCompatActivity {
         metAlamat = (EditText) findViewById(R.id.etAlama) ;
         metTempatLahir = (EditText) findViewById(R.id.etTmptLahir) ;
         metTglLahir = (EditText) findViewById(R.id.etTglLahir) ;
-
-
         userID = user.getUid();
-
-
         mbtnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
-
+                Date waktu = new Date();
+                SimpleDateFormat getTime = new SimpleDateFormat("dd/MM/yyy HH:mm");
 
                 String user_id = mAuth.getCurrentUser().getUid();
 
                 DatabaseReference current_db = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id);
                 String nama = metNAma.getText().toString();
                 String norm = metNomor.getText().toString();
-                String alamat = metAlamat.getText().toString();
-                String tglLahir =  metTglLahir.getText().toString();
-                String tmptLahir = metTempatLahir.getText().toString();
+                String Time = getTime.format(waktu).toString();
                 String token = FirebaseInstanceId.getInstance().getToken();
 
                 if (nama.isEmpty()){
@@ -72,35 +66,31 @@ public class LengkapiDataActivity extends AppCompatActivity {
                     metNAma.requestFocus();
                     return;
                 }
-                if (alamat.isEmpty()){
-                    metAlamat.setError("Nama Tidak Boleh Kosong");
+                if (norm.isEmpty()){
+                    metAlamat.setError("Nomor Rekam Medis Tidak Boleh Kosong");
                     metAlamat.requestFocus();
                     return;
                 }
-                if (tglLahir.isEmpty()){
-                    metTglLahir.setError("Nama Tidak Boleh Kosong");
-                    metTglLahir.requestFocus();
+                if (norm.length() < 6){
+                    metNomor.setError("Nomor Rekam Medis Tidak Valid");
+                    metNomor.requestFocus();
                     return;
                 }
-                if (tglLahir.isEmpty()){
-                    metTglLahir.setError("Nama Tidak Boleh Kosong");
-                    metTglLahir.requestFocus();
+                if (norm.length()>6){
+                    metNomor.setError("Nomor Rekam Medis Tidak Valid");
+                    metNomor.requestFocus();
                     return;
+
                 }
-                if (tmptLahir.isEmpty()){
-                    metTempatLahir.setError("Tempat Lahir Tidak Boleh Kosong");
-                    metTempatLahir.requestFocus();
-                }
+
+
+
                 Map newpost = new HashMap();
                 newpost.put("nama", nama);
                 newpost.put("norm", norm);
-                newpost.put("alamat", alamat);
-                newpost.put("tglLahit", tglLahir);
-                newpost.put("tmptLahir", tmptLahir);
+                newpost.put("waktuLogin", Time);
                 newpost.put("Token",token);
-
                 current_db.setValue(newpost);
-
                 Intent i = new Intent(LengkapiDataActivity.this, DrawerActivity.class);
                 startActivity(i);
             }

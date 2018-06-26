@@ -84,11 +84,13 @@ public class PemesananAmbulanActivity extends AppCompatActivity {
                         String nama = mNamaAmbulan.getText().toString();
                         String alamat = mAlamatAmbulan.getText().toString();
                         String keluhan = mKeluhanAmbulan.getText().toString();
+                        String status = "Belum Terkonfirmasi";
 
                         Map newPost = new HashMap();
                         newPost.put("nama", nama);
                         newPost.put("alamat", alamat);
                         newPost.put("keluhan", keluhan);
+                        newPost.put("Status" , status);
                         current_user_db.setValue(newPost);
                         Toast.makeText(getApplicationContext(),
                                 "Pendaftaran Berhasil, Silahkan Tungu Beberapa Saat", Toast.LENGTH_LONG).show();

@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.rsusyifamedika.syifamedika.DrawerActivity;
+import com.rsusyifamedika.syifamedika.LengkapiDataActivity;
 import com.rsusyifamedika.syifamedika.LupaPasswordctivity;
 import com.rsusyifamedika.syifamedika.R;
 
@@ -111,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         if (task.isSuccessful()) {
                             finish();
-                            Intent intent = new Intent(LoginActivity.this, VerifikasiActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, LengkapiDataActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
                         } else {

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+    android:layout_height="match_parent"
+    tools:context=".Poliklinik.DaftarDsActivity">
+
+
+    <LinearLayout
+        android:layout_width="336dp"
+        android:layout_height="401dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Pendafrtaran Poliklinik"
+            android:textSize="19dp" />
+
+        <EditText
+            android:id="@+id/edNamaDaftar"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:ems="10"
+            android:hint="Nama Lengkap"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/edNoDaftar"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:ems="10"
+            android:hint="No Rekam Medik"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/btDaftarr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lanjutkan" />
+
+        <TextView
+            android:id="@+id/textView42"
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            android:gravity="center"
+            android:onClick="DaftarNomorRM"
+            android:text="Tidak Memiliki No Rekam Medik ? Klik Disini" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -112,6 +112,7 @@ public class GigiAnakActivity extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     String Dokter = ds.getValue(String.class);
                     DokterPenyakitDalam.add(Dokter);
+
                 }
                 ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(GigiAnakActivity.this, android.R.layout.simple_spinner_dropdown_item, DokterPenyakitDalam);
                 arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -214,6 +215,5 @@ public class GigiAnakActivity extends AppCompatActivity {
                 });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
-
     }
 }
