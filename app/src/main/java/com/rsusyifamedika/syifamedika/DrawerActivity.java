@@ -209,7 +209,7 @@ public class DrawerActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_propil) {
-            Intent i = new Intent(DrawerActivity.this, KartuActivity.class);
+            Intent i = new Intent(DrawerActivity.this, TesActivity.class);
             startActivity(i);
 
         } else if (id == R.id.Profile) {
@@ -248,8 +248,6 @@ public class DrawerActivity extends AppCompatActivity
         alertDialog.show();
 
     }
-
-
     public void TeleponDarutar(View view) {
         Date waktu = new Date();
         SimpleDateFormat getTime = new SimpleDateFormat("dd/MM/yyy HH:mm");
@@ -272,7 +270,6 @@ public class DrawerActivity extends AppCompatActivity
         startActivity(intent);
 
     }
-
     public void Ambulance(View view) {
         Date waktu = new Date();
         SimpleDateFormat getTime = new SimpleDateFormat("dd/MM/yyy HH:mm");

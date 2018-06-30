@@ -128,7 +128,8 @@
         <activity android:name=".Poliklinik.GigiAnakActivity" />
         <activity android:name=".FeedbackActivity" />
         <activity android:name=".Poliklinik.DaftarDsActivity" />
-        <activity android:name=".Daftar.DaftarRMActivity"></activity>
+        <activity android:name=".Daftar.DaftarRMActivity" />
+        <activity android:name=".TesActivity"></activity>
     </application>
 
 </manifest>

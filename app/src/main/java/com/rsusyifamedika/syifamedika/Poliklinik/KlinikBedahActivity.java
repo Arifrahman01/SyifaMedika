@@ -160,7 +160,6 @@ public class KlinikBedahActivity extends AppCompatActivity {
                         newPost.put("noidentitas", noindenditas);
                         newPost.put("dokterspesialis", dokterspesialis);
                         newPost.put("waktupemesanan", waktu);
-
                         newPost.put("keluhan", keluhan);
                         newPost.put("poli", poli);
                         newPost.put("status", status);
