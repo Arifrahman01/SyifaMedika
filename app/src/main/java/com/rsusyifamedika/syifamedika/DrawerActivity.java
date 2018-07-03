@@ -93,15 +93,15 @@ public class DrawerActivity extends AppCompatActivity
         myRef = mFirebaseDatabase.getReference();
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
-        findViewById(R.id.buttontes).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String rcp = "082153424447";
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:" + rcp));
-                startActivity(intent);
-            }
-        });
+//        findViewById(R.id.buttontes).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String rcp = "082153424447";
+//                Intent intent = new Intent(Intent.ACTION_CALL);
+//                intent.setData(Uri.parse("tel:" + rcp));
+//                startActivity(intent);
+//            }
+//        });
 
         mimgjadwalPoli.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,14 +184,6 @@ public class DrawerActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
-
-
-
-//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//            ft.replace(R.id.contendrawer, new BlankFragment());
-//            ft.commit();
-
 
 
         if (id == R.id.nav_keluar) {

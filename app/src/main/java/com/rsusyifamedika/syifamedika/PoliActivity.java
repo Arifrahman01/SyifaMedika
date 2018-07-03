@@ -86,6 +86,7 @@ public class PoliActivity extends AppCompatActivity {
     }
 
     public void regis(View view) {
+        
         Intent i = new Intent(PoliActivity.this, PemesananActivity.class );
         startActivity(i);
     }

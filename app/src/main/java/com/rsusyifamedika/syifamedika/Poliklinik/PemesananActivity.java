@@ -53,10 +53,6 @@ public class PemesananActivity extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
         myRef = mFirebaseDatabase.getReference();
-//        if (mSpiner.getSelectedItem().toString().length() > 1 ){
-//            mpbPemesanan.setVisibility(View.GONE);
-//        }
-
 
         myRef.child("Poliklinik").addValueEventListener(new ValueEventListener() {
             @Override

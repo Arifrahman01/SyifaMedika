@@ -47,7 +47,7 @@ public class DaftarRMActivity extends AppCompatActivity {
     private RadioButton mrgIdentitasDaftar;
     private EditText medNamaDaftar, medNoKartuDaftar, mEdTglLahir, medTempatLahir, medAlamatDaftar, medNoTelpDaftar, medEmailDaftar,
             medPekerjaanDaftar, medAyhDaftar, medIbuDaftar, medRadioIdentitas, medRadioPemilikID, medRadioJenisKelamin, medRadioGolonganDarah,
-            medRadioKewarganegaraan;
+            medRadioKewarganegaraan, medKelurahanDaftar;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -87,6 +87,7 @@ public class DaftarRMActivity extends AppCompatActivity {
         medPekerjaanDaftar = (EditText) findViewById(R.id.edPekerjaanDaftar);
         medAyhDaftar = (EditText) findViewById(R.id.edAyhDaftar);
         medIbuDaftar = (EditText) findViewById(R.id.edIbuDaftar);
+        medKelurahanDaftar = (EditText) findViewById(R.id.edKelurahanDaftar);
 
         //Gone
         medRadioIdentitas = (EditText) findViewById(R.id.edRadioIdentitas);
@@ -269,6 +270,7 @@ public class DaftarRMActivity extends AppCompatActivity {
                 String Pkerjaan = medPekerjaanDaftar.getText().toString().trim();
                 String ibu = medIbuDaftar.getText().toString().trim();
                 String ayah = medAyhDaftar.getText().toString().trim();
+                String Kelurahan = medKelurahanDaftar.getText().toString().trim();
 
 
                 String identitas = medRadioIdentitas.getText().toString().trim();
@@ -317,6 +319,11 @@ public class DaftarRMActivity extends AppCompatActivity {
                 if (TextUtils.isEmpty(noID)) {
                     medNoKartuDaftar.setError("Nomor Identitas Tidak Boleh Kosong");
                     medNoKartuDaftar.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(Kelurahan)) {
+                    medKelurahanDaftar.setError("Kelurahan Tidak Boleh Kosong");
+                    medKelurahanDaftar.requestFocus();
                     return;
                 }
 
@@ -794,9 +801,8 @@ public class DaftarRMActivity extends AppCompatActivity {
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
                         String user_id = mAuth.getCurrentUser().getUid();
-                        DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id).child("DaftarRM");
+                        DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("DaftarRM").child(user_id);
                         String nama = medNamaDaftar.getText().toString();
                         String NoID = medNoKartuDaftar.getText().toString();
                         String TemptLahir = medTempatLahir.getText().toString();
@@ -806,6 +812,7 @@ public class DaftarRMActivity extends AppCompatActivity {
                         String Pekerjaan = medPekerjaanDaftar.getText().toString();
                         String ibu = medIbuDaftar.getText().toString();
                         String ayah = medAyhDaftar.getText().toString();
+                        String Kelurahan = medKelurahanDaftar.getText().toString();
                         /*Menggunakan Radio Buttom*/
                         String Identitas = medRadioIdentitas.getText().toString().trim();
                         String IdentitasPemilik = medRadioPemilikID.getText().toString().trim();
@@ -817,6 +824,9 @@ public class DaftarRMActivity extends AppCompatActivity {
                         String Status = mspStatus.getSelectedItem().toString();
                         String Pendidik = mspPTerakhir.getSelectedItem().toString();
                         String Tanggungan = mspTanggungan.getSelectedItem().toString();
+                        String Provinsi = mspProvinsi.getSelectedItem().toString();
+                        String Kab = mspKabKota.getSelectedItem().toString();
+                        String Kecamatan = mspKecamatan.getSelectedItem().toString();
 
 
                         Map newPost = new HashMap();
@@ -829,6 +839,7 @@ public class DaftarRMActivity extends AppCompatActivity {
                         newPost.put("NamaAyah", ayah);
                         newPost.put("NamaIbu", ibu);
                         newPost.put("Pekerjaan", Pekerjaan);
+                        newPost.put("Kelurahan", Kelurahan);
                         newPost.put("IdentitasJenis", Identitas);
                         newPost.put("IdentitasPemilik", IdentitasPemilik);
                         newPost.put("JenisKelamin", JenisKelamin);
@@ -838,6 +849,9 @@ public class DaftarRMActivity extends AppCompatActivity {
                         newPost.put("Status", Status);
                         newPost.put("PendidikanTerakhir", Pendidik);
                         newPost.put("Tanggungan", Tanggungan);
+                        newPost.put("Provinsi", Provinsi);
+                        newPost.put("Kabupaten",Kab);
+                        newPost.put("Kecamatan",Kecamatan);
                         current_user_db.setValue(newPost);
                     }
                 })
