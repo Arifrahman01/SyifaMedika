@@ -71,8 +71,15 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-    }
 
+        findViewById(R.id.btMasukDenganNomorPonsel).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, LoginNoPhoneActivity.class);
+                startActivity(i);
+            }
+        });
+    }
     private void userLogin() {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();

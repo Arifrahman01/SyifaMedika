@@ -22,6 +22,10 @@
     <item android:title="Akun">
         <menu>
             <item
+                android:id="@+id/nav_Pesan"
+                android:icon="@drawable/logo"
+                android:title="Pesan"/>
+            <item
                 android:id="@+id/nav_feedback"
                 android:icon="@drawable/logo"
                 android:title="Kritik dan Saran"/>

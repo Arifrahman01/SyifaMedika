@@ -8,40 +8,32 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.rsusyifamedika.syifamedika.Daftar.DaftarPoliklinikActivity;
 import com.rsusyifamedika.syifamedika.Daftar.LoginActivity;
-import com.rsusyifamedika.syifamedika.Poliklinik.DaftarDsActivity;
-import com.rsusyifamedika.syifamedika.Poliklinik.PemesananActivity;
 
-public class PoliActivity extends AppCompatActivity {
-    private WebView webPoli;
-    private ProgressBar bar;
+public class FasilitasActivity extends AppCompatActivity {
+    private WebView mwebViewLokasi;
+    private ProgressBar mpbLokasi;
     private FirebaseAuth mAuth;
-    private ImageView mRegis;
-
     private FirebaseAuth.AuthStateListener mAuthListener;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_poli);
+        setContentView(R.layout.activity_fasilitas);
         mAuth = FirebaseAuth.getInstance();
-        webPoli = (WebView) findViewById(R.id.wvPoli);
-        bar = (ProgressBar) findViewById(R.id.pbPoli);
+        mwebViewLokasi = (WebView) findViewById(R.id.webFasilitas);
+        mpbLokasi= (ProgressBar) findViewById(R.id.pbFasilitas);
+//        mwebViewLokasi.getSettings().setJavaScriptEnabled(false);
+        mwebViewLokasi.setWebViewClient(new myWebViewClient());
+        mwebViewLokasi.loadUrl("http://rsusyifamedika.com/fasilitas/");
 
-        webPoli.setWebViewClient(new myWebViewClient());
-//        webPoli.getSettings().setJavaScriptEnabled(true); //untuk mengaktifkan javascrip
-        webPoli.loadUrl("http://rsusyifamedika.com/jadwal-poliklinik");
         if (mAuth.getCurrentUser() == null) {
             AllertKeluarPoli();
         }
     }
-
     private void AllertKeluarPoli() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Error");
@@ -53,14 +45,13 @@ public class PoliActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mAuth.signOut();
-                        Intent i = new Intent(PoliActivity.this, LoginActivity.class);
+                        Intent i = new Intent(FasilitasActivity.this, LoginActivity.class);
                         startActivity(i);
                     }
                 });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
-
     private void AllertError() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Error");
@@ -71,58 +62,32 @@ public class PoliActivity extends AppCompatActivity {
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent i = new Intent(PoliActivity.this, DrawerActivity.class);
+                        Intent i = new Intent(FasilitasActivity.this, DrawerActivity.class);
                         startActivity(i);
                     }
                 });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
-
     @Override
     public void onBackPressed() {
-        if (webPoli.canGoBack()) {
-            webPoli.goBack();
+        if (mwebViewLokasi.canGoBack()) {
+            mwebViewLokasi.goBack();
         }
         super.onBackPressed();
-    }
-
-    public void regis(View view) {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Poliklinik");
-        alertDialogBuilder
-                .setMessage("Untuk Siapa Pemesanan Poliklinik ini ?")
-                .setIcon(R.mipmap.ic_launcher)
-                .setCancelable(false)
-                .setPositiveButton("Saya Sendiri", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        Intent i = new Intent(PoliActivity.this, DaftarDsActivity.class);
-                        startActivity(i);
-                    }
-                })
-                .setNegativeButton("Orang Lain", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                    }
-                });
-        AlertDialog alertDialog  = alertDialogBuilder.create();
-        alertDialog.show();
     }
 
     public class myWebViewClient extends WebViewClient {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
-            bar.setVisibility(View.GONE);
+            mpbLokasi.setVisibility(View.GONE);
         }
-
         @Override
         public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
             super.onReceivedError(view, errorCode, description, failingUrl);
             AllertError();
         }
+
     }
 }

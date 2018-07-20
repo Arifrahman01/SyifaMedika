@@ -229,35 +229,7 @@ public class DaftarRMActivity extends AppCompatActivity {
             }
         });
 
-        mspKabKota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String Kab;
-                Kab = parent.getSelectedItem().toString();
-                switch (Kab) {
-                    case "Balangan":
 
-
-                        break;
-                    case "Banjar":
-
-
-                        break;
-                    case "Barito Kuala":
-
-
-                        break;
-                    case "Hulu Sungai Selatan":
-
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         mbtDaftarRM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

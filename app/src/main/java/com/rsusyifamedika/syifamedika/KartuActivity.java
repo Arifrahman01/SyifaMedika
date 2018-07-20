@@ -1,5 +1,4 @@
 package com.rsusyifamedika.syifamedika;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -35,16 +34,16 @@ public class KartuActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
 
-
         myRef.child("PemesananPoli").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                showData(dataSnapshot);
+                String Nama = dataSnapshot.child("nama").getValue(String.class);
+                String Norm = dataSnapshot.child("norm").getValue(String.class);
+                mtvNamaLengkap.setText(Nama);
+                mtvNomorRM.setText(Norm);
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
 

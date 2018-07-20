@@ -10,6 +10,7 @@ public class UserInformation {
     private String DokterSpesialis;
     private String status;
     private String waktu;
+    private String Pesan;
 
     public UserInformation(){
 
@@ -26,7 +27,6 @@ public class UserInformation {
     public String getAlamat() {
         return alamat;
     }
-
     public void setAlamat(String alamat) {
         this.alamat = alamat;
     }

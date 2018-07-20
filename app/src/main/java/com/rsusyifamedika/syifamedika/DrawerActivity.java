@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
@@ -26,9 +27,14 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.rsusyifamedika.syifamedika.Ambulan.PemesananAmbulanActivity;
+import com.rsusyifamedika.syifamedika.Daftar.DaftarPoliklinikActivity;
 import com.rsusyifamedika.syifamedika.Daftar.LoginActivity;
 import com.rsusyifamedika.syifamedika.Daftar.MenuLoginActivity;
 import com.rsusyifamedika.syifamedika.Poliklinik.DaftarDsActivity;
@@ -43,7 +49,7 @@ import java.util.Map;
 public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseAuth mAuth;
-    private TextView mtvNamaDrawer, mtvEmailDrawer, mTVTelepon;
+    private TextView mtvNamaDrawer, mtvEmailDrawer, mTVTelepon, mtvNormDrawer, mtvNamaaa;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
@@ -58,15 +64,15 @@ public class DrawerActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mAuth = FirebaseAuth.getInstance();
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+/*Bagian Pesan Yang diSAmping Kanan Bawah COnten Drawer*/
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -84,6 +90,10 @@ public class DrawerActivity extends AppCompatActivity
 
         mimgPemesanan = findViewById(R.id.imgPemesanan);
 
+        mtvNamaDrawer = (TextView) findViewById(R.id.mtvNamaDrawer);
+        mtvNormDrawer = (TextView) findViewById(R.id.tvNormDrawer);
+        mtvNamaaa     = (TextView) findViewById(R.id.tvNamaDrawer);
+
 
 
 
@@ -93,15 +103,7 @@ public class DrawerActivity extends AppCompatActivity
         myRef = mFirebaseDatabase.getReference();
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
-//        findViewById(R.id.buttontes).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                String rcp = "082153424447";
-//                Intent intent = new Intent(Intent.ACTION_CALL);
-//                intent.setData(Uri.parse("tel:" + rcp));
-//                startActivity(intent);
-//            }
-//        });
+
 
         mimgjadwalPoli.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +118,19 @@ public class DrawerActivity extends AppCompatActivity
                 AlertPemesananDs();
 //                Intent i = new Intent(DrawerActivity.this, PemesananActivity.class);
 //                startActivity(i);
+            }
+        });
+        myRef.child("Users").child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String Nama = dataSnapshot.child("nama").getValue(String.class);
+                String Norm = dataSnapshot.child("norm").getValue(String.class);
+                mtvNamaDrawer.setText(Nama);
+                mtvNormDrawer.setText(Norm);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
@@ -186,12 +201,24 @@ public class DrawerActivity extends AppCompatActivity
         int id = item.getItemId();
 
 
+
+
+//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//            ft.replace(R.id.contendrawer, new BlankFragment());
+//            ft.commit();
+
+
+
         if (id == R.id.nav_keluar) {
             AllertKeluar();
             return true;
 
         } else if (id == R.id.nav_feedback) {
             Intent i = new Intent(DrawerActivity.this, FeedbackActivity.class);
+            startActivity(i);
+
+        } else if (id == R.id.nav_Pesan) {
+            Intent i = new Intent(DrawerActivity.this, PesanActivity.class);
             startActivity(i);
 
 
@@ -201,13 +228,15 @@ public class DrawerActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_propil) {
-            Intent i = new Intent(DrawerActivity.this, TesActivity.class);
+            Intent i = new Intent(DrawerActivity.this, EditProfileActivity.class);
             startActivity(i);
 
         } else if (id == R.id.Profile) {
-            Intent i = new Intent(DrawerActivity.this, StatusActivity.class);
+            Intent i = new Intent(DrawerActivity.this, KartuActivity.class);
             startActivity(i);
-        }
+//            Intent i = new Intent(DrawerActivity.this, StatusActivity.class);
+//        startActivity(i);
+    }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -241,44 +270,148 @@ public class DrawerActivity extends AppCompatActivity
 
     }
     public void TeleponDarutar(View view) {
-        Date waktu = new Date();
-        SimpleDateFormat getTime = new SimpleDateFormat("dd/MM/yyy HH:mm");
-
-
-        String user_id = mAuth.getCurrentUser().getUid();
-        DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Aemergency").child("Darurat").child(user_id);
-        String Darurat = "Darurat";
-        String Time = getTime.format(waktu).toString();
-        Map newPost = new HashMap();
-
-        newPost.put("Daraurat", Darurat);
-        newPost.put("waktu", Time);
-
-        current_user_db.setValue(newPost);
-
-        String rcp = "082153424447";
-        Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:" + rcp));
-        startActivity(intent);
-
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Telepon Darurat");
+        alertDialogBuilder
+                .setMessage("Minta Bantuan ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        AlertTeleponDarurat2();
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog  = alertDialogBuilder.create();
+        alertDialog.show();
     }
+
+    private void AlertTeleponDarurat2() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Telepon Darurat");
+        alertDialogBuilder
+                .setMessage("Apakah Anda Ingin Dihubungi Oleh Pihak Rumah Sakit ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Date waktu = new Date();
+                        SimpleDateFormat getTime = new SimpleDateFormat("dd/MM/yyy HH:mm");
+                        String user_id = mAuth.getCurrentUser().getUid();
+                        DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("TlpDarurat").child(user_id);
+                        String Darurat = "Darurat";
+                        String Nama = mtvNamaDrawer.getText().toString();
+                        String Norm = mtvNormDrawer.getText().toString();
+                        String Token =FirebaseInstanceId.getInstance().getToken();
+                        String Time = getTime.format(waktu).toString();
+                        String Telp = "Telepon";
+                        Map newPost = new HashMap();
+                        newPost.put("Nama", Nama);
+                        newPost.put("Norm", Norm);
+                        newPost.put("Token", Token);
+                        newPost.put("Daraurat", Darurat);
+                        newPost.put("waktu", Time);
+                        newPost.put("TelpBalik", Telp);
+                        current_user_db.setValue(newPost);
+                        String rcp = "082153424447";
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse("tel:" + rcp));
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Date waktu = new Date();
+                        SimpleDateFormat getTime = new SimpleDateFormat("dd/MM/yyy HH:mm");
+                        String user_id = mAuth.getCurrentUser().getUid();
+                        DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("TlpDarurat").child(user_id);
+                        String Darurat = "Darurat";
+                        String Nama = mtvNamaDrawer.getText().toString();
+                        String Norm = mtvNormDrawer.getText().toString();
+                        String Token =FirebaseInstanceId.getInstance().getToken();
+                        String Time = getTime.format(waktu).toString();
+                        String Telp = "Tidak";
+                        Map newPost = new HashMap();
+                        newPost.put("Nama", Nama);
+                        newPost.put("Norm", Norm);
+                        newPost.put("Token", Token);
+                        newPost.put("Daraurat", Darurat);
+                        newPost.put("waktu", Time);
+                        newPost.put("TelpBalik", Telp);
+                        current_user_db.setValue(newPost);
+                        String rcp = "082153424447";
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse("tel:" + rcp));
+                        startActivity(intent);
+
+                    }
+                });
+        AlertDialog alertDialog  = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
     public void Ambulance(View view) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Ambulan");
+        alertDialogBuilder
+                .setMessage("Minta Penjemputn Ambulan ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Ambulance2();
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog  = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private void Ambulance2() {
         Date waktu = new Date();
         SimpleDateFormat getTime = new SimpleDateFormat("dd/MM/yyy HH:mm");
-
         String user_id = mAuth.getCurrentUser().getUid();
-        DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Aemergency").child("Ambulance").child(user_id);
+        DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Ambulance").child(user_id);
         String Darurat = "Ambulance";
+        String Nama = mtvNamaDrawer.getText().toString();
+        String Norm = mtvNormDrawer.getText().toString();
+        String Token = FirebaseInstanceId.getInstance().getToken();
         String Time = getTime.format(waktu).toString();
         Map newPost = new HashMap();
-
         newPost.put("Ambulance", Darurat);
         newPost.put("waktu", Time);
+        newPost.put("Nama", Nama);
+        newPost.put("Norm",Norm);
+        newPost.put("Token", Token);
 
         current_user_db.setValue(newPost);
         String rcp = "082153424447";
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + rcp));
         startActivity(intent);
+    }
+
+    public void DokterPrakter(View view) {
+        Intent i = new Intent(DrawerActivity.this,DokterActivity.class);
+        startActivity(i);
+    }
+
+    public void Fasilitas(View view) {
+        Intent i = new Intent(DrawerActivity.this,FasilitasActivity.class);
+        startActivity(i);
     }
 }

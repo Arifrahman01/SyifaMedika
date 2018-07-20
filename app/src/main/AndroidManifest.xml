@@ -24,7 +24,6 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -89,13 +88,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DrawerActivity" />
         </activity>
-
         <service android:name=".Notifikasi.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
         <activity
             android:name=".mEditActivity"
             android:label="Edit Profile">
@@ -126,10 +123,43 @@
         <activity android:name=".Poliklinik.KlinikGigiBedahActivity" />
         <activity android:name=".Poliklinik.KlinikGigiActivity" />
         <activity android:name=".Poliklinik.GigiAnakActivity" />
-        <activity android:name=".FeedbackActivity" />
-        <activity android:name=".Poliklinik.DaftarDsActivity" />
-        <activity android:name=".Daftar.DaftarRMActivity" />
-        <activity android:name=".TesActivity"></activity>
+        <activity
+            android:name=".FeedbackActivity"
+            android:label="Ktirik dan Saran">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+        <activity
+            android:name=".Poliklinik.DaftarDsActivity"
+            android:label="Pendaftaran Poliklinik">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+        <activity
+            android:name=".Daftar.DaftarRMActivity"
+            android:label="Pendaftaran Rekam Medis">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+        <activity android:name=".TesActivity" />
+        <activity
+            android:name=".Daftar.DaftarPoliklinikActivity"
+            android:label="Pendaftaran Poliklinik">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Poliklinik.DaftarDsActivity" />
+        </activity>
+        <activity
+            android:name=".PesanActivity"
+            android:label="Kontak Masuk">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DrawerActivity" />
+        </activity>
+        <activity android:name=".FasilitasActivity"></activity>
     </application>
 
 </manifest>

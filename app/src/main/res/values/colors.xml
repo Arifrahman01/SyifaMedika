@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3e3f45</color>
     <color name="colorPrimaryDark">#52545e</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorKuning">#dcff40</color>
+    <color name="colorMerah">#f7ff343b</color>
+    <color name="colorHitam">#000000</color>
+
+
 </resources>

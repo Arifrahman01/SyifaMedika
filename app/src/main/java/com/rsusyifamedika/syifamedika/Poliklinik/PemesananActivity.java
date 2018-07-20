@@ -54,7 +54,7 @@ public class PemesananActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         myRef = mFirebaseDatabase.getReference();
 
-        myRef.child("Poliklinik").addValueEventListener(new ValueEventListener() {
+        myRef.child("Poliklinik").child("Poli").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 List<String> Polispesial = new ArrayList<String>();

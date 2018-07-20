@@ -1,9 +1,14 @@
 package com.rsusyifamedika.syifamedika;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -18,16 +23,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EditProfileActivity extends AppCompatActivity {
-    private static final String TAG = "EditProfileActivity";
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
     private String userID;
-    private ListView mListView;
-    private EditText mEdit;
+    private EditText medNamaEditProfil, medNormEditProfil,medNohpEditProfil,medAlamatEditProfil;
 
 
     @Override
@@ -36,95 +41,112 @@ public class EditProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_profile);
 
 
-        mListView = (ListView) findViewById(R.id.listview);
-        // Ke Firebase AUTH
         mAuth = FirebaseAuth.getInstance();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
-        mEdit = (EditText) findViewById(R.id.etEdit) ;
-//
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    toastMessage("Harap Periksa Data Diri Anda " + user.getEmail());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                    toastMessage("Successfully signed out.");
-                }
-                // ...
-            }
-        };
+        medNamaEditProfil = (EditText) findViewById(R.id.edNamaEditProfil);
+        medNohpEditProfil = (EditText) findViewById(R.id.edNohpEditProfil);
+        medNormEditProfil = (EditText) findViewById(R.id.edNormEditProfil);
+        medAlamatEditProfil = (EditText) findViewById(R.id.edAlamatEditProfil);
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.child("Users").child(userID).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                showData(dataSnapshot);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String Nama = dataSnapshot.child("nama").getValue(String.class);
+                String Norm = dataSnapshot.child("norm").getValue(String.class);
+                String Nohp = dataSnapshot.child("Nohp").getValue(String.class);
+                String Alamat = dataSnapshot.child("Alamat").getValue(String.class);
+
+                medNamaEditProfil.setText(Nama);
+                medNormEditProfil.setText(Norm);
+                medNohpEditProfil.setText(Nohp);
+                medAlamatEditProfil.setText(Alamat);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+        findViewById(R.id.btPerbaruiProfil).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String Nama = medNamaEditProfil.getText().toString();
+                String Norm = medNormEditProfil.getText().toString();
+
+                if (TextUtils.isEmpty(Nama)){
+                    medNamaEditProfil.setError("Nama Tidak Boleh Kosong");
+                    medNamaEditProfil.requestFocus();
+                    return;
+                }
+                if (TextUtils.isEmpty(Norm)){
+                    medNormEditProfil.setError("Nomor Rekam Medis Tidak Boleh Kosong");
+                    medNormEditProfil.requestFocus();
+                    return;
+                }
+                if (Norm.length()<6){
+                    medNormEditProfil.setError("Nomor Rekam Medis Tidak Valid");
+                    medNormEditProfil.requestFocus();
+                    return;
+
+                }
+                if (Norm.length()>6){
+                    medNormEditProfil.setError("Nomor Rekam Medis Tidak Valid");
+                    medNormEditProfil.requestFocus();
+                    return;
+                }
+                PerbaruiProfil();
+            }
+        });
+
+
 
     }
-    private void showData(DataSnapshot dataSnapshot) {
-        for(DataSnapshot ds : dataSnapshot.getChildren()){
-            //menarik data
-            UserInformation uInfo = new UserInformation();
-            uInfo.setNama(ds.child(userID).getValue(UserInformation.class).getNama()); //nama
-            uInfo.setAlamat(ds.child(userID).getValue(UserInformation.class).getAlamat()); //alamat
-            uInfo.setNorm(ds.child(userID).getValue(UserInformation.class).getNorm()); // No RM
-            uInfo.setTempat(ds.child(userID).getValue(UserInformation.class).getTempat()); //Tempat Lahor
-            uInfo.setTgl_lahir(ds.child(userID).getValue(UserInformation.class).getTgl_lahir()); //Tanggal Lahir
 
-            //menampilkan data
-            Log.d(TAG, "showData: name: " + uInfo.getNama());
-            Log.d(TAG, "showData: alamat: " + uInfo.getAlamat());
-            Log.d(TAG, "showData: norm: " + uInfo.getNorm());
-            Log.d(TAG, "showData: tempat: " + uInfo.getTempat());
-            Log.d(TAG, "showData: tgl_lahir: " + uInfo.getTgl_lahir());
+    private void PerbaruiProfil() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Profil");
+        alertDialogBuilder
+                .setMessage("Simpan Perubahan ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String user_id = mAuth.getCurrentUser().getUid();
+                        DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id);
 
-            ArrayList<String> array  = new ArrayList<>();
-            array.add(uInfo.getNama());
-            array.add(uInfo.getTempat());
-            array.add(uInfo.getNorm());
-            array.add(uInfo.getAlamat());
-            array.add(uInfo.getTgl_lahir());
-            ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,array);
-            mListView.setAdapter(adapter);
-            mEdit.setText(uInfo.getNama().toString());
+                        String Nama = medNamaEditProfil.getText().toString();
+                        String Norm = medNormEditProfil.getText().toString();
+                        String Nohp = medNohpEditProfil.getText().toString();
+                        String Alamat = medAlamatEditProfil.getText().toString();
+                        Map newPost = new HashMap();
+                        newPost.put("nama", Nama);
+                        newPost.put("norm", Norm);
+                        newPost.put("Alamat", Alamat);
+                        newPost.put("Nohp", Nohp);
+                        current_user_db.setValue(newPost);
+                        AlertBerhasil();
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog  = alertDialogBuilder.create();
+        alertDialog.show();
 
-        }
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
-        }
-    }
-    private void toastMessage(String message){
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
-
-
-
+    private void AlertBerhasil() {
+        Intent i = new Intent(EditProfileActivity.this,DrawerActivity.class);
+        startActivity(i);
+        Toast.makeText(getApplicationContext(),
+                "Perubahan Data Berhasil", Toast.LENGTH_LONG).show();
     }
 }

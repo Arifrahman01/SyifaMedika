@@ -1,16 +1,22 @@
 package com.rsusyifamedika.syifamedika.Poliklinik;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.rsusyifamedika.syifamedika.Daftar.DaftarPoliklinikActivity;
 import com.rsusyifamedika.syifamedika.Daftar.DaftarRMActivity;
 import com.rsusyifamedika.syifamedika.R;
 
@@ -39,13 +45,24 @@ public class DaftarDsActivity extends AppCompatActivity {
         medNamaDaftar = findViewById(R.id.edNamaDaftar);
         medNoDaftar = findViewById(R.id.edNoDaftar);
 
+        myRef.child("Users").child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.child("nama").getValue(String.class);
+                String Norm = dataSnapshot.child("norm").getValue(String.class);
+                medNamaDaftar.setText(value);
+                medNoDaftar.setText(Norm);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
 
         findViewById(R.id.btDaftarr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String nama = medNamaDaftar.getText().toString();
                 String Nomor = medNoDaftar.getText().toString();
-
                 if (TextUtils.isEmpty(nama)){
                     medNamaDaftar.setError("Nama Tidak Boleh Kosong");
                     medNamaDaftar.requestFocus();
@@ -70,26 +87,19 @@ public class DaftarDsActivity extends AppCompatActivity {
             }
         });
     }
-
     private void SimpanPendaftar() {
-        String user_id = mAuth.getCurrentUser().getUid();
-        DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Users").child("NoPoli").child(user_id);
-        String nama = medNamaDaftar.getText().toString();
-        String nomor = medNoDaftar.getText().toString();
-
-        Map newPost = new HashMap();
-        newPost.put("Nama", nama);
-        newPost.put("NoRM", nomor);
-
-        current_user_db.setValue(newPost);
-
-        Intent i = new Intent(DaftarDsActivity.this, PemesananActivity.class);
+        Intent i = new Intent(DaftarDsActivity.this, DaftarPoliklinikActivity.class);
         startActivity(i);
-
     }
-
     public void DaftarNomorRM(View view) {
-        Intent i = new Intent(DaftarDsActivity.this, DaftarRMActivity.class);
-        startActivity(i);
+        String Norm = medNoDaftar.getText().toString();
+        if (Norm.length() == 0){
+            Intent i = new Intent(DaftarDsActivity.this, DaftarRMActivity.class);
+            startActivity(i);
+            return;
+        }
+        Toast.makeText(getApplicationContext(),
+                "Akun Anda Sudah Terdaftar", Toast.LENGTH_LONG).show();
+
     }
 }
