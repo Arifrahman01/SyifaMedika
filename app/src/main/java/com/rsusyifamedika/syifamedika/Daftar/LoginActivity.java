@@ -111,11 +111,8 @@ public class LoginActivity extends AppCompatActivity {
             etPassword.requestFocus();
             return;
         }
-
-
         progressDialog.setMessage("Sedang Login, Tunggu Beberapa Saat........");
         progressDialog.show();
-
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -129,11 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
-
-
-                    }
-
+                        }
                 });
     }
-
 }
