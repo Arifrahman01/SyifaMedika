@@ -40,6 +40,7 @@
                 android:ems="10"
                 android:hint="Nomor Rekam Medis"
                 android:inputType="number"
+                android:enabled="false"
                 android:textSize="12dp" />
         </android.support.design.widget.TextInputLayout>
 

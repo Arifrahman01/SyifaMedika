@@ -9,12 +9,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.rsusyifamedika.syifamedika.DrawerActivity;
+import com.rsusyifamedika.syifamedika.LengkapiDataActivity;
 import com.rsusyifamedika.syifamedika.R;
 
 public class VerifikasiActivity extends AppCompatActivity {
@@ -30,6 +32,8 @@ public class VerifikasiActivity extends AppCompatActivity {
         mbtLanjut = (Button) findViewById(R.id.btLanjutkan);
         mtvVerifikasi = (TextView) findViewById(R.id.tvVerifikasi);
         mAuth = FirebaseAuth.getInstance();
+
+
         mbtVerifikasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,32 +50,41 @@ public class VerifikasiActivity extends AppCompatActivity {
                         });
             }
         });
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+       FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user.isEmailVerified() != true) {
             AllertPesanVerifikasi();
 //            Toast.makeText(this, "Email Belum TerVerifikasi", Toast.LENGTH_SHORT).show();
         }
         if (user.isEmailVerified() != false) {
-        startActivity(new Intent(getApplicationContext(), DrawerActivity.class));
+            mtvVerifikasi.setText("Email : " + mAuth.getCurrentUser().getEmail().toString() + "Terverifikasi");
+            startActivity(new Intent(getApplicationContext(), LengkapiDataActivity.class));
         }
 
         mbtLanjut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(VerifikasiActivity.this, DrawerActivity.class);
+                mAuth.signOut();
+                Intent i = new Intent(VerifikasiActivity.this, LoginActivity.class);
                 startActivity(i);
-                FirebaseAuth.getInstance().getCurrentUser()
-                        .reload();
+                Toast.makeText(getApplicationContext(),
+                        "Silahkan Masuk Untuk Melanjutkan", Toast.LENGTH_LONG).show();
             }
         });
+
         mtvVerifikasi.setText("Email : " + mAuth.getCurrentUser().getEmail().toString() + " Belum Terfirifikasi");
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this,"Tidak Dapat Kembali", Toast.LENGTH_LONG).show();
     }
 
     private void AllertPesanVerifikasi() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Verifikasi Email");
         alertDialogBuilder
-                .setMessage("Email Belum Terferifikasi, Silahkan Verifikasi Email Terlebih Dahulu")
+                .setMessage("Silahkan Verifikasi Email Terlebih Dahulu")
                 .setIcon(R.mipmap.ic_launcher)
                 .setCancelable(false)
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
@@ -112,8 +125,9 @@ public class VerifikasiActivity extends AppCompatActivity {
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = getPackageManager().getLaunchIntentForPackage("com.android.email");
-                        startActivity(intent);
+                        dialog.dismiss();
+//                        Intent intent = getPackageManager().getLaunchIntentForPackage("com.android.email");
+//                        startActivity(intent);
                  /*       try{
                             Intent intent = new Intent (Intent.ACTION_VIEW ,Uri.parse("mailto:" + "arifuniska@gmail.com"));
                             intent.putExtra(Intent.EXTRA_SUBJECT, "Verifikasi Email");

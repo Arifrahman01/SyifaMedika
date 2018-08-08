@@ -80,6 +80,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this,"Tidak Dapat Kembali", Toast.LENGTH_LONG).show();
+    }
     private void userLogin() {
         String email = etEmail.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
@@ -131,4 +135,5 @@ public class LoginActivity extends AppCompatActivity {
 
                 });
     }
+
 }

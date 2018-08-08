@@ -57,7 +57,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String Nama = dataSnapshot.child("nama").getValue(String.class);
                 String Norm = dataSnapshot.child("norm").getValue(String.class);
-                String Nohp = dataSnapshot.child("Nohp").getValue(String.class);
+                String Nohp = dataSnapshot.child("NoHp").getValue(String.class);
                 String Alamat = dataSnapshot.child("Alamat").getValue(String.class);
 
                 medNamaEditProfil.setText(Nama);

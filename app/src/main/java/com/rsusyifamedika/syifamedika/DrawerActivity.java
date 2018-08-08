@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -35,6 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.rsusyifamedika.syifamedika.Ambulan.PemesananAmbulanActivity;
 import com.rsusyifamedika.syifamedika.Daftar.DaftarPoliklinikActivity;
+import com.rsusyifamedika.syifamedika.Daftar.DaftarRMActivity;
 import com.rsusyifamedika.syifamedika.Daftar.LoginActivity;
 import com.rsusyifamedika.syifamedika.Daftar.MenuLoginActivity;
 import com.rsusyifamedika.syifamedika.Poliklinik.DaftarDsActivity;
@@ -50,6 +52,7 @@ public class DrawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseAuth mAuth;
     private TextView mtvNamaDrawer, mtvEmailDrawer, mTVTelepon, mtvNormDrawer, mtvNamaaa;
+    private EditText normKartu;
     private FirebaseDatabase mFirebaseDatabase;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference myRef;
@@ -93,6 +96,7 @@ public class DrawerActivity extends AppCompatActivity
         mtvNamaDrawer = (TextView) findViewById(R.id.mtvNamaDrawer);
         mtvNormDrawer = (TextView) findViewById(R.id.tvNormDrawer);
         mtvNamaaa     = (TextView) findViewById(R.id.tvNamaDrawer);
+        normKartu     = (EditText) findViewById(R.id.normKartu);
 
 
 
@@ -103,6 +107,7 @@ public class DrawerActivity extends AppCompatActivity
         myRef = mFirebaseDatabase.getReference();
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
+
 
 
         mimgjadwalPoli.setOnClickListener(new View.OnClickListener() {
@@ -127,6 +132,7 @@ public class DrawerActivity extends AppCompatActivity
                 String Norm = dataSnapshot.child("norm").getValue(String.class);
                 mtvNamaDrawer.setText(Nama);
                 mtvNormDrawer.setText(Norm);
+                normKartu.setText(Norm);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -221,23 +227,18 @@ public class DrawerActivity extends AppCompatActivity
             Intent i = new Intent(DrawerActivity.this, PesanActivity.class);
             startActivity(i);
 
-
         } else if (id == R.id.nav_lokasi) {
             Intent i = new Intent(DrawerActivity.this, LokasiActivity.class);
             startActivity(i);
 
-
         } else if (id == R.id.nav_propil) {
-            Intent i = new Intent(DrawerActivity.this, EditProfileActivity.class);
+            Intent i = new Intent(DrawerActivity.this, StatusActivity.class);
             startActivity(i);
 
         } else if (id == R.id.Profile) {
-            Intent i = new Intent(DrawerActivity.this, KartuActivity.class);
+            Intent i = new Intent(DrawerActivity.this, EditProfileActivity.class);
             startActivity(i);
-//            Intent i = new Intent(DrawerActivity.this, StatusActivity.class);
-//        startActivity(i);
     }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -255,7 +256,7 @@ public class DrawerActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         mAuth.signOut();
-                        Intent i = new Intent(DrawerActivity.this, MenuLoginActivity.class);
+                        Intent i = new Intent(DrawerActivity.this, LoginActivity.class);
                         startActivity(i);
                     }
                 })
@@ -413,5 +414,42 @@ public class DrawerActivity extends AppCompatActivity
     public void Fasilitas(View view) {
         Intent i = new Intent(DrawerActivity.this,FasilitasActivity.class);
         startActivity(i);
+    }
+
+    public void KartuPasien(View view) {
+        String norm = normKartu.getText().toString();
+        if (norm.isEmpty()){
+            AlertDaftarNomorRM();
+            return;
+        }
+        Intent i = new Intent(DrawerActivity.this, KartuActivity.class);
+        startActivity(i);
+
+    }
+
+
+    private void AlertDaftarNomorRM() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Akun Belum Terdaftar");
+        alertDialogBuilder
+                .setMessage("Daftar Rekam Medis Sekarang ?")
+                .setIcon(R.mipmap.ic_launcher)
+                .setCancelable(false)
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = new Intent(DrawerActivity.this, DaftarRMActivity.class);
+                        startActivity(i);
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog  = alertDialogBuilder.create();
+        alertDialog.show();
+
     }
 }

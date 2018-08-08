@@ -1,7 +1,10 @@
 package com.rsusyifamedika.syifamedika;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -10,6 +13,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rsusyifamedika.syifamedika.Daftar.DaftarRMActivity;
 
 public class KartuActivity extends AppCompatActivity {
     private TextView mtvNomorRM, mtvNamaLengkap, mtvAlamat;
@@ -34,32 +38,21 @@ public class KartuActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         userID = user.getUid();
 
-        myRef.child("PemesananPoli").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String Nama = dataSnapshot.child("nama").getValue(String.class);
-                String Norm = dataSnapshot.child("norm").getValue(String.class);
-                mtvNamaLengkap.setText(Nama);
-                mtvNomorRM.setText(Norm);
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-            }
-        });
+      myRef.child("Users").child(userID).addValueEventListener(new ValueEventListener() {
+          @Override
+          public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+              String Nama = dataSnapshot.child("nama").getValue(String.class);
+              String Alamat = dataSnapshot.child("Alamat").getValue(String.class);
+              String Norm = dataSnapshot.child("norm").getValue(String.class);
 
-    }
+              mtvNomorRM.setText(Norm);
+              mtvNamaLengkap.setText(Nama);
+              mtvAlamat.setText(Alamat);
+          }
+          @Override
+          public void onCancelled(@NonNull DatabaseError databaseError) {
 
-    private void showData(DataSnapshot dataSnapshot) {
-        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-            String user_id = mAuth.getCurrentUser().getUid();
-            UserInformation uInfo = new UserInformation();
-            uInfo.setNama(ds.child(user_id).getValue(UserInformation.class).getNama());
-            uInfo.setNorm(ds.child(user_id).getValue(UserInformation.class).getNorm());
-            uInfo.setAlamat(ds.child(user_id).getValue(UserInformation.class).getAlamat());
-
-            mtvNomorRM.setText(uInfo.getNorm().toString());
-            mtvNamaLengkap.setText(uInfo.getNama().toString());
-            mtvAlamat.setText(uInfo.getAlamat().toString());
-        }
+          }
+      });
     }
 }

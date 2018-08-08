@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.session.MediaSession;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,9 +13,13 @@ import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
+import com.rsusyifamedika.syifamedika.Daftar.VerifikasiActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,7 +34,7 @@ public class LengkapiDataActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private String userID;
     private Button mbtnSimpan;
-    private EditText metNAma, metNomor, metAlamat, metTempatLahir, metTglLahir, medNomorh;
+    private EditText metNAma, metNomor, metAlamat, medNomorh;
 
 
     @Override
@@ -43,12 +48,31 @@ public class LengkapiDataActivity extends AppCompatActivity {
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         myRef = mFirebaseDatabase.getReference();
         FirebaseUser user = mAuth.getCurrentUser();
+        userID = user.getUid();
+
         metNAma = (EditText) findViewById(R.id.etNama) ;
         metNomor = (EditText) findViewById(R.id.edNomor) ;
         metAlamat = (EditText) findViewById(R.id.edAlamat) ;
         medNomorh = (EditText) findViewById(R.id.edNomorhp1);
 
-        userID = user.getUid();
+        myRef.child("Users").child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String Nama = dataSnapshot.child("nama").getValue(String.class);
+                String Norm = dataSnapshot.child("norm").getValue(String.class);
+                String Nohp = dataSnapshot.child("Nohp").getValue(String.class);
+                String Alamat = dataSnapshot.child("Alamat").getValue(String.class);
+
+                metNAma.setText(Nama);
+                metNomor.setText(Norm);
+                metAlamat.setText(Alamat);
+                medNomorh.setText(Nohp);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
         mbtnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +100,7 @@ public class LengkapiDataActivity extends AppCompatActivity {
                     medNomorh.requestFocus();
                     return;
                 }
-                if (medNomorh.length()<13){
+                if (medNomorh.length()>14){
                     medNomorh.setError("Nomor Hanphone Tidak Valid");
                     medNomorh.requestFocus();
                     return;
@@ -120,7 +144,7 @@ public class LengkapiDataActivity extends AppCompatActivity {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle("Profil");
         alertDialogBuilder
-                .setMessage("Apakah Data Anda Sudah Sesuai ? \n Nama : "+ metNAma.getText().toString()+"\n Nomor Rekam Medis : "+metNomor.getText().toString())
+                .setMessage("Apakah Data Anda Sudah Sesuai ? \n Nama : "+ metNAma.getText().toString()+"\n Nomor Rekam Medis : "+metNomor.getText().toString()+"\n Alamat : "+ metAlamat.getText().toString()+"\n Telepon : "+medNomorh.getText().toString())
                 .setIcon(R.mipmap.ic_launcher)
                 .setCancelable(false)
                 .setPositiveButton("Ya", new DialogInterface.OnClickListener() {

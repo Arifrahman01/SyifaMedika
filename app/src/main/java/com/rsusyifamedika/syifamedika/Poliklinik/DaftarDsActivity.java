@@ -69,8 +69,10 @@ public class DaftarDsActivity extends AppCompatActivity {
                     return;
                 }
                 if (TextUtils.isEmpty(Nomor)) {
-                    medNoDaftar.setError("Nomor Rekam Medis Tidak Boleh Kosong");
-                    medNoDaftar.requestFocus();
+                    Toast.makeText(getApplicationContext(),
+                            "Silahkan Daftar Rekam Medis Terlebih Dahulu", Toast.LENGTH_LONG).show();
+//                    medNoDaftar.setError("Nomor Rekam Medis Tidak Boleh Kosong");
+//                    medNoDaftar.requestFocus();
                     return;
                 }
                 if (Nomor.length()>6){

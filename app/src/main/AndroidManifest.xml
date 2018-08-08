@@ -24,6 +24,7 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +35,7 @@
         <activity
             android:name=".Daftar.LoginActivity"
             android:label="Masuk" />
+
         <activity
             android:name=".Daftar.MainActivity"
             android:label="Daftar" />
@@ -88,11 +90,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DrawerActivity" />
         </activity>
+
         <service android:name=".Notifikasi.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
         <activity
             android:name=".mEditActivity"
             android:label="Edit Profile">
@@ -159,7 +163,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DrawerActivity" />
         </activity>
-        <activity android:name=".FasilitasActivity"></activity>
+        <activity android:name=".FasilitasActivity" />
+        <activity android:name=".SidangActivity" />
+        <activity android:name=".Sidang2Activity">
+        </activity>
     </application>
 
 </manifest>
